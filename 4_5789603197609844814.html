@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>خمس أرواح حلوة ✨</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --pink-soft: #fff0f3;
+  --pink-card: rgba(255, 255, 255, 0.94);
+  --pink-primary: #ff758f;
+  --pink-deep: #ff4d6d;
+  --text-main: #592e3d;
+  --text-sub: #8d5b6c;
+  --border-pink: rgba(255, 182, 193, 0.6);
+  --shadow-pink: rgba(255, 77, 109, 0.2);
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #fff0f3 0%, #ffe5ec 50%, #fff0f5 100%);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  direction: rtl;
+}
+
+/* خلفية منقطة لطيفة */
+.pattern-bg {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none; opacity: 0.15;
+  background-image: radial-gradient(#ff758f 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+}
+
+/* حاوية القلوب المتحركة الكثيرة */
+#hearts-container {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 1; overflow: hidden;
+}
+
+/* حركة طفو القلوب الصاعدة */
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  user-select: none;
+  animation: heartFloat var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  opacity: var(--opacity);
+  filter: drop-shadow(0 2px 6px rgba(255, 77, 109, 0.3));
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  15% {
+    opacity: var(--opacity);
+  }
+  85% {
+    opacity: var(--opacity);
+  }
+  100% {
+    transform: translateY(-110vh) rotate(var(--rotation)) scale(var(--scale));
+    opacity: 0;
+  }
+}
+
+.story-wrap {
+  position: relative; z-index: 3;
+  max-width: 580px; margin: 0 auto;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  padding: 40px 20px 60px;
+}
+
+.page {
+  display: none; flex-direction: column; align-items: center;
+  justify-content: center; text-align: center;
+  width: 100%; min-height: 55vh;
+  animation: pageIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.page.active { display: flex; }
+@keyframes pageIn {
+  0% { opacity: 0; transform: translateY(25px) scale(0.96); }
+ 100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* بطاقة القصة */
+.girly-card {
+  position: relative;
+  background: var(--pink-card);
+  border-radius: 32px;
+  padding: 40px 30px 32px;
+  box-shadow: 0 12px 40px var(--shadow-pink), 0 2px 6px rgba(0,0,0,0.02);
+  border: 2px solid #ffffff;
+  outline: 1px solid var(--border-pink);
+  width: 100%; overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.card-heart-corner {
+  position: absolute; font-size: 1.5rem; opacity: 0.35; pointer-events: none;
+  animation: pulseHeart 2s infinite ease-in-out;
+}
+.card-heart-corner.tl { top: 12px; right: 15px; }
+.card-heart-corner.br { bottom: 12px; left: 15px; }
+
+@keyframes pulseHeart {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+.orn-divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin: 18px 0; opacity: 0.75;
+}
+.orn-divider .line { width: 50px; height: 2px; background: linear-gradient(90deg, transparent, var(--pink-primary)); border-radius: 2px; }
+.orn-divider .line:last-child { background: linear-gradient(90deg, var(--pink-primary), transparent); }
+.orn-divider .heart { font-size: 0.9rem; color: var(--pink-deep); }
+
+/* النصوص والخط الواضح */
+.story-text {
+  font-size: 1.25rem; line-height: 2.3; font-weight: 600;
+  color: var(--text-main); max-width: 480px; margin: 0 auto;
+  letter-spacing: 0.2px;
+}
+.story-text.quote {
+  font-size: 1.35rem; color: var(--pink-deep); font-weight: 700;
+  background: linear-gradient(45deg, #ff4d6d, #c9184a);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.typing-cursor {
+  display: inline-block; width: 3px; height: 1.2em;
+  background: var(--pink-primary); margin-right: 4px; vertical-align: middle;
+  animation: blink 0.8s ease-in-out infinite; border-radius: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.page-decor { font-size: 2.8rem; margin-bottom: 12px; animation: girlyPulse 2.5s ease-in-out infinite; }
+@keyframes girlyPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15) rotate(4deg)} }
+
+.char-emoji { font-size: 3rem; margin-bottom: 6px; display: block; filter: drop-shadow(0 4px 8px var(--shadow-pink)); }
+.char-name { font-size: 1.8rem; color: var(--pink-deep); font-weight: 800; margin-bottom: 2px; }
+.char-sub { font-size: 0.95rem; color: var(--text-sub); font-weight: 600; margin-bottom: 16px; background: rgba(255, 117, 143, 0.12); display: inline-block; padding: 3px 14px; border-radius: 20px; }
+
+.names-wrap { display: flex; flex-direction: column; gap: 14px; align-items: center; }
+.name-item {
+  font-size: 1.4rem; color: var(--pink-deep); font-weight: 700;
+  padding: 8px 26px; background: rgba(255,255,255,0.85);
+  border-radius: 25px; box-shadow: 0 4px 15px rgba(255,117,143,0.15);
+  border: 1px solid var(--border-pink);
+  opacity: 0; transform: translateY(16px);
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.name-item.show { opacity: 1; transform: translateY(0); }
+
+/* أزرار تفاعلية */
+.nbtn, .rbtn {
+  display: none; margin-top: 26px; padding: 13px 38px;
+  font-family: 'Cairo', sans-serif; font-size: 1.05rem; font-weight: 700;
+  cursor: pointer; border: none; border-radius: 50px;
+  transition: all 0.35s ease; letter-spacing: 0.3px;
+}
+.nbtn {
+  background: linear-gradient(135deg, #ff758f, #ff4d6d);
+  color: #fff; box-shadow: 0 6px 20px rgba(255, 77, 109, 0.35);
+}
+.nbtn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px rgba(255, 77, 109, 0.45); }
+
+.rbtn {
+  background: linear-gradient(135deg, #f7b267, #f79d65);
+  color: #fff; box-shadow: 0 6px 20px rgba(247, 178, 103, 0.35);
+}
+.rbtn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 25px rgba(247, 178, 103, 0.45); }
+
+.nbtn.vis, .rbtn.vis { display: inline-block; animation: btnIn 0.5s ease-out; }
+@keyframes btnIn { 0%{opacity:0;transform:translateY(12px)} 100%{opacity:1;transform:translateY(0)} }
+
+/* الاختبار */
+.quiz-q { font-size: 1.2rem; color: var(--pink-deep); font-weight: 700; margin-bottom: 20px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 380px; }
+.quiz-opt {
+  padding: 12px 20px;
+  background: #ffffff;
+  border: 2px solid var(--border-pink); border-radius: 18px;
+  color: var(--text-main); font-family: 'Cairo', sans-serif;
+  font-size: 1.02rem; font-weight: 600;
+  cursor: pointer; transition: all 0.3s ease; text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.02);
+}
+.quiz-opt:hover { background: var(--pink-soft); border-color: var(--pink-primary); transform: scale(1.02); }
+.quiz-opt.sel { background: rgba(255, 117, 143, 0.15); border-color: var(--pink-deep); }
+.quiz-resp {
+  display: none; margin-top: 20px; padding: 18px 22px;
+  background: #ffffff; border: 2px solid #ffccd5;
+  border-radius: 20px; font-size: 1.05rem; line-height: 2.1;
+  color: var(--text-main); max-width: 460px;
+  box-shadow: 0 6px 20px rgba(255, 182, 193, 0.2);
+  animation: pageIn 0.5s ease-out;
+}
+.quiz-resp.vis { display: block; }
+
+.page-num {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+  font-size: 0.85rem; color: var(--pink-primary); opacity: 0.7; z-index: 10;
+  font-weight: 700; background: rgba(255,255,255,0.8); padding: 4px 14px; border-radius: 20px;
+}
+
+@media (max-width: 480px) {
+  .story-text { font-size: 1.12rem; line-height: 2.1; }
+  .story-text.quote { font-size: 1.2rem; }
+  .story-wrap { padding: 30px 15px 50px; }
+  .girly-card { padding: 30px 20px 24px; border-radius: 26px; }
+  .char-name { font-size: 1.55rem; }
+  .name-item { font-size: 1.2rem; }
+  .nbtn, .rbtn { padding: 11px 30px; font-size: 0.98rem; }
+}
+
+::-webkit-scrollbar { display: none; }
+body { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+</head>
+<body>
+
+<div class="pattern-bg"></div>
+<div id="hearts-container"></div>
+<div class="page-num" id="pn"></div>
+<div class="story-wrap" id="sw"></div>
+
+<script>
+
+var PAGES = [{"type": "text", "decor": "💖✨", "text": "بعض الأشخاص لا يدخلون حياتنا بالصدفة… بل يأتون وكأنهم هدية جميلة، ليجعلوا أيامنا أدفأ وأجمل.", "isQuote": true}, {"type": "text", "decor": "🌸💕", "text": "في حكايات كتير بتبدأ بـ كان يا ما كان… لكن الحكاية دي بدأت بخمس أرواح حلوة."}, {"type": "text", "text": "خمس بنات… خمس شخصيات مختلفة… لكن قلوبهم كانت تعرف معنى واحدًا: الونس."}, {"type": "names", "names": ["أسماء 🌸", "ملك 💖", "مريم 💕", "إسراء 💗", "رانيا 💞"]}, {"type": "quiz", "q": "مين تتوقعوا أول واحدة تضحك؟ 😄", "opts": [{"l": "أسماء 🌸", "r": "أسماء بتضحك من قلبها، وضحكتها بتشيل أي تعب. صح إنها أول واحدة تضحك لأنها بتفضل الابتسامة على أي حاجة تانية. 🌸"}, {"l": "ملك ❤️", "r": "ملك بتضحك بطريقة تجعل كل اللي حواليها يضحك معاها. ضحكتها مش مجرد صوت… دي حاجة أكتر، دي روح حلوة بتعدي للناس اللي حواليها. والحقيقة إن أغلى ضحكة هي ضحكة ملك! ❤️"}, {"l": "مريم 🇮🇹", "r": "مريم بتجيب ضحكة مختلفة، كأنها جايبة معاها طاقة من مكان بعيد. وكل مرة تضحك بتخلي الواحد يحس إن الدنيا أوسع وأجمل. 🇮🇹"}, {"l": "إسراء 🌿", "r": "إسراء خفة دمها مش عادية! ممكن تضحك من حاجة مش موجودة أصلاً! بس ده اللي بيخلي وجودها حلو… إنها بتلتقط الموقف من زاوية ما حدش شافها. 🌿"}, {"l": "رانيا ✨", "r": "رانيا ضحكتها هادية وجميلة، كأنها بتقول حكاية حلوة من غير ما تفتح بيها شفتها. واللي بيسمعها بيحس إن الوقت بقى أحلى. ✨"}]}, {"type": "char", "emoji": "🌸", "name": "أسماء", "sub": "من قنا 🌸", "text": "من قنا… جاءت أسماء، حاملة معها روحًا جميلة وابتسامة تجعل الحكاية ألطف. أسماء كانت من النوع اللي مجرد وجودها بيخلي المكان أحلى. بتدخل المجلس وكانها جايبة معها شمس. ضحكتها صادقة، وكلامها حلو، وطريقة ما تقول بيها الحاجات بتخلي الواحد يحس إنه عارفها من زمان."}, {"type": "text", "text": "وأسماء، رغم إنها جاية من مكان بعيد، كانت بتخلي كل واحد حس بيها قريب. كانت تحكي حكايات عن قنا، عن الناس وعن الأماكن الجميلة، وكل واحد كان بيستمع منها وكأنه بشوف المكان عينه. أسماء كانت مثل اللي بييجي في يومك من غير ما تحس، وبس يبقى، كل حاجة بتقفى أحلى. 🌸"}, {"type": "char", "emoji": "💖", "name": "ملك", "sub": "حكايتها لوحدها ❤️", "glow": true, "text": "أما ملك… فدي حكايتها لوحدها. لأن ملك مش مجرد بنت في القصة… ملك كانت الروح اللي بتلون الحكاية كلها. في ناس وجودهم عادي… وفي ناس مجرد وجودهم بيخلي المكان أهدى وأجمل. وملك كانت من الناس اللي روحهم بتدخل القلب من غير استئذان."}, {"type": "text", "text": "ملك كانت بتمتلك طاقة غريبة: قدرتها إنها تخلي اللي حواليها يحسوا إنهم مهمين. مش بشكل مبالغ فيه، لأن ملك كانت بتعمل ده بطريقة طبيعية جدًا. بتستمع بجد، بتهتم بجد، وبتحس بالناس بجد. وده اللي بيخليها غالية في قلوب كل من عرفها."}, {"type": "text", "text": "وأحيانًا، كانت أجمل لحظات ملك هي اللحظات الهادية. لحظات ما فيهاش كلام كبير، ولكن فيها احترام وابتسامة وإحساس حقيقي إن الواحد عنده قيمة. ملك كانت من الناس اللي لما تبقى معاهم، بتحس إن الدنيا بقى أطيب وأأمن. وده ليس شيئًا صغيرًا… في عالم كثير الضوضاء، الناس زي ملك هم اللي بيوصلونا إن في ناس طيبين فعلًا. ❤️"}, {"type": "char", "emoji": "💕", "name": "مريم", "sub": "من إيطاليا 🇮🇹", "text": "ومن إيطاليا… جاءت مريم، ومعها لمسة مختلفة وروح جميلة وضحكة لها طعم خاص. مريم كانت بتجيب معها ريحة البحر ودفء الأماكن الجميلة، وكانت تحكي وتقول حاجات بتخلي اللي حواليها يحسوا إنهم في مكان تاني."}, {"type": "text", "text": "مريم كانت خفيفة الظل بشكل جميل، ممكن تحكي من أي حاجة واللي حواليها يضحكوا معاها من غير ما يعرفوا علامة. كانت تحكي عن الفرق بين المكانيين، عن الأكل الجديد، عن الكلام اللي ممكن يبقى مضحك في ثقافة ومضحك في تانية. وده التنوع في شخصيتها كان هو اللي بيخليها محبوبة جدًا سواء البنات. 🇮🇹"}, {"type": "char", "emoji": "💗", "name": "إسراء", "sub": "من المنوفية 🌿", "text": "ومن المنوفية… جاءت إسراء، حاملة معها خفة دم وروحًا لطيفة تجعل الكلام معها أجمل. إسراء كانت من النوع اللي مجرد ما تدخل المجلس حتى الأوضاء بتتغير. كانت بتلقط أي موقف وتحوله لحظة ضحك، وبتقول حاجات ممكن ما يكون فيهاش منطق، ولكن اللي يضحك بشكل أكبر من أي منطق."}, {"type": "text", "text": "إسراء كان ليها طابع خاص جدًا. مش فقط خفيفة الدم، لكن كمان ليها قلب كبير وإحساس عالي بالناس اللي حواليها. كانت تحس باللي حواليها وتفهمهم من غير ما يقولوا حاجة. وده اللي بيخلي كل واحد يحب يكون قريب منها، لأن إسراء كانت بتقول في رأيها: الناس اللي بنحبهم مفروض نخليهم يضحكوا. 🌿"}, {"type": "char", "emoji": "💞", "name": "رانيا", "sub": "حضور مميز ✨", "text": "أما رانيا… فكان ليها حضور خاص، من النوع اللي يجعل اليوم العادي يبدو أجمل. رانيا كانت دافئة ولطيفة، بتدخل المكان وكانها بتحط نور عليه. ليس بشكل صاخب، ولكن بشكل طبيعي جدًا يخلي اللي حواليها يحسوا بالراحة."}, {"type": "text", "text": "رانيا كانت مثل الصباح اللي بيجي هادي… مش بيكون فيه ضجيج، ولكن فيه جمال ودفء وحس حلو إن اليوم هيكون أحلى. كانت تستمع للناس بجد، وبتقول رأيها بشكل هادي، وبتخلي اللي قريب منها يحس إنه مفهوم ومحبوب. رانيا كانت النوع اللي وجودها بحد ذاته يبقى مميز. ✨"}, {"type": "text", "decor": "🌙💖", "text": "ولما اجتمعت الخمس بنات… المكان كان بيتغير. كان في ضحك وكلام وحكايات ممكن تمليلي الليل. أحيانًا كانوا يجلسوا ويضحكوا من غير سبب، وأحيانًا كان فيهم حد بتحكي حكاية طويلة والباقي كلهم مستمعين بجد."}, {"type": "text", "text": "وأحيانًا كانت أجمل لحظاتهم هي اللي ملهاش سبب… ضحكة فجأة، كلام كتير عن ولا حاجة، أو مجرد وجودهم مع بعض. لأن بعض الأشخاص لا يحتاجون إلى أن يفعلوا شيئًا مميزًا… وجودهم وحده هو الشيء المميز. ❤️"}, {"type": "quiz", "q": "مين أكتر واحدة ممكن تحول موقف عادي لذكرى جميلة؟ ❤️", "opts": [{"l": "أسماء 🌸", "r": "أسماء بتحول أي لحظة لذكرى بطريقة ما محدش يتوقعها. مجرد ابتسامتها كفيها تخلي الموقف يبقى مخزون في الذاكرة. 🌸"}, {"l": "ملك ❤️", "r": "ملك بتخلي أي موقف عادي يبقى ذكرى غالية، لأن طريقة اللي بتتعامل بيها بتخليه خاص. بتهتم بالتفاصيل الصغيرة وده اللي بيخلي اللحظة تبقى في القلب للأبد. ❤️"}, {"l": "مريم 🇮🇹", "r": "مريم بتحول الموقف لذكرى بإضافة لمسة خاصة. ممكن تقول حاجة بسيطة ولكن بطريقة جعلت الموقف يبقى في البال وما ينسى. 🇮🇹"}, {"l": "إسراء 🌿", "r": "إسراء مش فقط بتحول الموقف… بتخليه كلونة جديدة! بضحكتها وملاحظاتها المضحكة، أي لحظة عادية بتولد ذكرى جميلة. 🌿"}, {"l": "رانيا ✨", "r": "رانيا بتحول الموقف لذكرى بهدوئها وروعتها. مجرد وجودها في الموقف بيخليه يبقى أجمل، ولما تتذكر اللحظة بعد كده، بتلاقي ريحة حلوة. ✨"}]}, {"type": "text", "decor": "💫💗", "text": "الذكريات الجميلة مش بتكون لازم تكون كبيرة. أحيانًا أجمل ذكرى هي ضحكة ولا حاجة، أو جلسة هادئة مع ناس بتحبهم. وده اللي الخمس بنات كانوا بيصنعوه كل يوم."}, {"type": "text", "text": "كانوا يتكلموا عن الأحلام، عن الأيام اللي جاية، عن الحاجات البسيطة اللي بتخلي القلب ينبض. وفي كل مرة، كان فيهم واحدة بتضيف لمسة جديدة للحكاية. أسماء بدفها الحنان، ملك بحسنها الهدوء، مريم بثقافتها الخاصة، إسراء بخفة دمها، ورانيا بروعتها. وكل ما كانوا مع بعض، الحكاية كانت تكبر وتجمل."}, {"type": "text", "text": "يمكن كل واحدة تيجي من مكان مختلف… ويمكن الأيام تاخدنا في طرق مختلفة… لكن في ناس، لما يدخلوا القلب، بيبقوا جزء من الحكاية للأبد. ❤️"}, {"type": "names", "names": ["أسماء من قنا 🌸", "ملك 💖", "مريم من إيطاليا 💕", "إسراء من المنوفية 💗", "رانيا 💞"]}, {"type": "text", "decor": "📖💞", "text": "أجمل الحكايات مش بتكون مكتوبة في الكتب… أحيانًا بتكون مكتوبة في الضحكات، والمواقف، والناس اللي بنحب وجودهم."}, {"type": "text", "isLast": true, "text": "ودي حكاية خمس بنات… يمكن لكل واحدة منهم عالم مختلف، لكن لما اجتمعوا… صنعوا حكاية جميلة جدًا. ❤️✨"}];
+
+var currentPage = 0;
+var typingTimer = null;
+
+// توليد قلوب كثيرة متدفقة باستمرار
+(function generateHearts(){
+  var container = document.getElementById('hearts-container');
+  var heartTypes = ['💖', '💕', '💗', '💓', '❤️', '💞', '💘', '🌸'];
+  var heartCount = 35; // عدد القلوب الكلي في الشاشة
+
+  for (var i = 0; i < heartCount; i++) {
+    var heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.textContent = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+    
+    // إعدادات أبعاد وحركات عشوائية
+    var leftPos = Math.random() * 100;
+    var duration = 6 + Math.random() * 9; // من 6 إلى 15 ثانية
+    var delay = Math.random() * 10;
+    var size = 0.9 + Math.random() * 1.3;
+    var opacity = 0.4 + Math.random() * 0.55;
+    var rotation = (Math.random() > 0.5 ? 1 : -1) * (20 + Math.random() * 60);
+
+    heart.style.left = leftPos + '%';
+    heart.style.fontSize = (size * 1.2) + 'rem';
+    heart.style.setProperty('--duration', duration + 's');
+    heart.style.setProperty('--delay', delay + 's');
+    heart.style.setProperty('--opacity', opacity);
+    heart.style.setProperty('--scale', size);
+    heart.style.setProperty('--rotation', rotation + 'deg');
+
+    container.appendChild(heart);
+  }
+})();
+
+function renderPage(idx){
+  var c = document.getElementById('sw');
+  c.innerHTML = '';
+  var p = PAGES[idx];
+  if(!p) return;
+  document.getElementById('pn').textContent = (idx+1) + ' / ' + PAGES.length;
+
+  if(p.type === 'text' || p.type === 'char'){
+    var pg = document.createElement('div');
+    pg.className = 'page active';
+    var card = document.createElement('div');
+    card.className = 'girly-card';
+    
+    // قلوب نابضة على زوايا البطاقة
+    card.innerHTML += '<div class="card-heart-corner tl">💖</div><div class="card-heart-corner br">💖</div>';
+
+    if(p.decor){
+      var dec = document.createElement('div');
+      dec.className = 'page-decor';
+      dec.textContent = p.decor;
+      card.appendChild(dec);
+    }
+
+    if(p.type === 'char'){
+      var em = document.createElement('span');
+      em.className = 'char-emoji'; em.textContent = p.emoji; card.appendChild(em);
+      var nm = document.createElement('div');
+      nm.className = 'char-name'; nm.textContent = p.name; card.appendChild(nm);
+      var sb = document.createElement('div');
+      sb.className = 'char-sub'; sb.textContent = p.sub; card.appendChild(sb);
+      
+      var d = document.createElement('div'); d.className = 'orn-divider';
+      d.innerHTML = '<div class="line"></div><div class="heart">💖</div><div class="line"></div>';
+      card.appendChild(d);
+    }
+
+    var txt = document.createElement('div');
+    txt.className = 'story-text' + (p.isQuote ? ' quote' : '');
+    card.appendChild(txt);
+
+    pg.appendChild(card);
+    var btn = document.createElement('button');
+    btn.className = p.isLast ? 'rbtn' : 'nbtn';
+    btn.textContent = p.isLast ? '💖 إعادة قراءة الحكاية' : 'التالي ←';
+    btn.onclick = function(){ if(p.isLast) restartStory(); else goToPage(idx+1); };
+    pg.appendChild(btn);
+    c.appendChild(pg);
+    typeText(txt, p.text, btn);
+
+  } else if(p.type === 'names'){
+    var pg = document.createElement('div');
+    pg.className = 'page active';
+    var card = document.createElement('div');
+    card.className = 'girly-card';
+    card.innerHTML += '<div class="card-heart-corner tl">💖</div><div class="card-heart-corner br">💖</div>';
+    
+    var nw = document.createElement('div');
+    nw.className = 'names-wrap'; card.appendChild(nw);
+    p.names.forEach(function(name, i){
+      var ni = document.createElement('div');
+      ni.className = 'name-item'; ni.textContent = name; nw.appendChild(ni);
+      setTimeout(function(){ ni.classList.add('show'); }, 400 + i * 500);
+    });
+
+    pg.appendChild(card);
+    var btn = document.createElement('button');
+    btn.className = 'nbtn';
+    btn.textContent = 'التالي ←';
+    btn.onclick = function(){ goToPage(idx+1); };
+    pg.appendChild(btn);
+    c.appendChild(pg);
+    setTimeout(function(){ btn.classList.add('vis'); }, 400 + (p.names.length-1)*500 + 600);
+
+  } else if(p.type === 'quiz'){
+    var pg = document.createElement('div');
+    pg.className = 'page active';
+    var card = document.createElement('div');
+    card.className = 'girly-card';
+    card.innerHTML += '<div class="card-heart-corner tl">💖</div><div class="card-heart-corner br">💖</div>';
+
+    var q = document.createElement('div');
+    q.className = 'quiz-q'; q.textContent = p.q; card.appendChild(q);
+    var opts = document.createElement('div');
+    opts.className = 'quiz-opts'; card.appendChild(opts);
+    var resp = document.createElement('div');
+    resp.className = 'quiz-resp'; card.appendChild(resp);
+
+    pg.appendChild(card);
+    var btn = document.createElement('button');
+    btn.className = 'nbtn';
+    btn.textContent = 'التالي ←';
+    btn.onclick = function(){ goToPage(idx+1); };
+    pg.appendChild(btn);
+    c.appendChild(pg);
+
+    p.opts.forEach(function(opt){
+      var ob = document.createElement('button');
+      ob.className = 'quiz-opt'; ob.textContent = opt.l;
+      ob.onclick = function(){
+        var all = opts.querySelectorAll('.quiz-opt');
+        for(var j=0;j<all.length;j++) all[j].classList.add('sel');
+        resp.textContent = opt.r;
+        resp.classList.add('vis');
+        btn.classList.add('vis');
+      };
+      opts.appendChild(ob);
+    });
+  }
+}
+
+function typeText(el, text, btn){
+  if(typingTimer) clearTimeout(typingTimer);
+  var i = 0;
+  var cur = document.createElement('span');
+  cur.className = 'typing-cursor'; el.appendChild(cur);
+  function tick(){
+    if(i < text.length){
+      var ch = text.charAt(i);
+      el.insertBefore(document.createTextNode(ch), cur);
+      i++;
+      var d = 18 + Math.random()*15;
+      if('\u2026\u060c.'.indexOf(ch) !== -1) d += 150;
+      typingTimer = setTimeout(tick, d);
+    } else {
+      if(cur.parentNode) cur.parentNode.removeChild(cur);
+      btn.classList.add('vis');
+    }
+  }
+  tick();
+}
+
+function goToPage(idx){
+  if(typingTimer) clearTimeout(typingTimer);
+  if(idx < 0 || idx >= PAGES.length) return;
+  currentPage = idx;
+  renderPage(idx);
+  window.scrollTo(0, 0);
+}
+function restartStory(){ goToPage(0); }
+
+renderPage(0);
+
+</script>
+</body>
+</html>
